@@ -6,7 +6,7 @@
       <form string="Generar QR para Checkpoint">
         <group>
           <field name="checkpoint_id"/>
-          <field name="qr_image" widget="image" readonly="1"/>
+          <field name="qr_image" widget="image" readonly="1" style="width:200px; height:200px;"/>
         </group>
         <footer>
           <button name="generar_qr" type="object" string="Generar QR" class="btn-primary"/>

@@ -6,15 +6,16 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="name"/>
+                        <field name="imagen_qr" widget="image" class="oe_avatar"/>
+                    </group>
+                    <group>
                         <field name="ubicacion"/>
+                        <field name="name"/>
                         <field name="descripcion"/>
                         <field name="codigo_qr" readonly="1"/>
                         <field name="gps_latitude" placeholder="Latitud"/>
                         <field name="gps_longitude" placeholder="Longitud"/>
-                    </group>
-                    <group>
-                        <field name="imagen_qr" widget="image" class="oe_avatar"/>
+                        <field name="mapa_html" readonly="1"/>
                     </group>
                     <notebook>
                         <page string="Visitas">
@@ -37,8 +38,8 @@
         <field name="model">checkpoint.seguridad</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
                 <field name="ubicacion"/>
+                <field name="name"/>
                 <field name="codigo_qr"/>
                 <field name="gps_latitude"/>
                 <field name="gps_longitude"/>
@@ -50,8 +51,13 @@
         <field name="name">Checkpoints</field>
         <field name="res_model">checkpoint.seguridad</field>
         <field name="view_mode">tree,form</field>
+        <field name="groups_id" eval="[(4, ref('modulo_checkpoints_gps.grupo_administrador_seguridad'))]"/>
     </record>
 
-    <menuitem id="menu_checkpoint_root" name="Checkpoints"/>
-    <menuitem id="menu_checkpoint" name="Checkpoints de Seguridad" parent="menu_checkpoint_root" action="action_checkpoint" />
+    <menuitem id="menu_checkpoint_root" name="Checkpoints" groups="modulo_checkpoints_gps.grupo_administrador_seguridad" web_icon="modulo_checkpoints_gps,static/description/icon.png"/>
+    <menuitem id="menu_checkpoint"
+              name="Checkpoints de Seguridad"
+              parent="menu_checkpoint_root"
+              action="action_checkpoint"
+              groups="modulo_checkpoints_gps.grupo_administrador_seguridad"/>
 </odoo>
