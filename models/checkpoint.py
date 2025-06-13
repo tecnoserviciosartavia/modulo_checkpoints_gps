@@ -10,13 +10,28 @@ class Checkpoint(models.Model):
         ('checkpoint_name_unique', 'unique(name)', 'El nombre del checkpoint debe ser único.'),
     ]
 
-    name = fields.Char('Nombre', required=True)  # <--- elimina unique=True
-    gps_latitude = fields.Float('Latitud GPS')
-    gps_longitude = fields.Float('Longitud GPS')
+    name = fields.Char('Checkpoint', required=True)  # <--- elimina unique=True
+    gps_latitude = fields.Float('Latitud GPS', digits=(10, 6))
+    gps_longitude = fields.Float('Longitud GPS', digits=(10, 6))
+    mapa_html = fields.Html(string='Mapa', compute='_compute_mapa_html', sanitize=False)
     qr_image = fields.Binary('Imagen QR', readonly=True)
 
+    @api.depends('gps_latitude', 'gps_longitude')
+    def _compute_mapa_html(self):
+        for rec in self:
+            if rec.gps_latitude and rec.gps_longitude:
+                url = (
+                    f"https://www.google.com/maps?q={rec.gps_latitude},{rec.gps_longitude}&z=16&output=embed"
+                )
+                rec.mapa_html = (
+                    f'<iframe width="250" height="150" frameborder="0" style="border:0" '
+                    f'src="{url}" allowfullscreen></iframe>'
+                )
+            else:
+                rec.mapa_html = ''
+
     descripcion = fields.Text(string='Descripción')
-    ubicacion = fields.Char(string='Ubicación')
+    ubicacion = fields.Char(string='Ubicación del Checkpoint')
     codigo_qr = fields.Char(
         string='Código QR',
         required=True,
