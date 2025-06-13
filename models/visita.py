@@ -8,7 +8,7 @@ class VisitaSeguridad(models.Model):
     #ubicacion_checkpoint = fields.Char(string='Ubicación del Checkpoint', related='checkpoint_id.ubicacion', store=True, readonly=True)
     ubicacion_checkpoint = fields.Char(string='Puesto de Seguridad', related='checkpoint_id.puesto_id.name', store=True, readonly=True)
     oficial_id = fields.Many2one('res.users', string='Oficial', required=True, default=lambda self: self.env.user)
-    fecha_visita = fields.Datetime(string='Fecha de la Visita', required=True, default=fields.Datetime.now)
+    fecha_visita = fields.Datetime(string='Fecha y Hora', required=True, default=fields.Datetime.now)
     ubicacion_gps = fields.Char(string='Ubicación GPS')
     observaciones = fields.Text(string='Observaciones')
     mapa_html = fields.Html(string='Mapa', compute='_compute_mapa_html', sanitize=False)
