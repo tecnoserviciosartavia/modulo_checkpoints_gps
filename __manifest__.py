@@ -1,11 +1,13 @@
 {
     'name': 'Checkpoints GPS de Seguridad',
     'version': '1.0',
-    'summary': 'Gestión de puntos de control GPS con QR y registros de visitas.',
-    'description': 'Este módulo permite registrar checkpoints con códigos QR',
+    'summary': 'Gestión de puntos de control GPS con QR y registros de marcas.',
+    'description': 'Este módulo permite registrar checkpoints con códigos QR para oficiales de seguridad. Incluye funcionalidades para escanear QR, registrar visitas y generar informes.',
+    'category': 'Security',
+    'website': 'https://www.ticofac.com',
     'author': 'Tecno Servicios Artavia',
     'license': 'LGPL-3',
-    'depends': ['base', 'web', 'website', 'mail'],
+    'depends': ['base', 'web', 'website',],
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
