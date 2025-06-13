@@ -9,7 +9,7 @@
                         <field name="imagen_qr" widget="image" class="oe_avatar"/>
                     </group>
                     <group>
-                        <field name="ubicacion"/>
+                        <field name="puesto_id"/>
                         <field name="name"/>
                         <field name="descripcion"/>
                         <field name="codigo_qr" readonly="1"/>
@@ -38,7 +38,7 @@
         <field name="model">checkpoint.seguridad</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="ubicacion"/>
+                <field name="puesto_id"/>
                 <field name="name"/>
                 <field name="codigo_qr"/>
                 <field name="gps_latitude"/>

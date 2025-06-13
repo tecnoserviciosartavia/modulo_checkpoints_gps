@@ -1,0 +1,36 @@
+<odoo>
+    <record id="view_puesto_form" model="ir.ui.view">
+        <field name="name">puesto.seguridad.form</field>
+        <field name="model">puesto.seguridad</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="descripcion"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_puesto_tree" model="ir.ui.view">
+        <field name="name">puesto.seguridad.tree</field>
+        <field name="model">puesto.seguridad</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="descripcion"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_puesto" model="ir.actions.act_window">
+        <field name="name">Puestos de Seguridad</field>
+        <field name="res_model">puesto.seguridad</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_puesto"
+              name="Puestos de Seguridad"
+              parent="menu_checkpoint_root"
+              action="action_puesto"
+              groups="modulo_checkpoints_gps.grupo_administrador_seguridad"/>
+</odoo>

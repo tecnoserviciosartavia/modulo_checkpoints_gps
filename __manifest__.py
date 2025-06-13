@@ -12,6 +12,7 @@
         'security/ir.model.access.csv',
         'security/security.xml',
         'views/checkpoint_views.xml',
+        'views/puesto_views.xml',
         'views/checkpoint_actions.xml',
         'views/generar_qr_wizard_view.xml',
         'views/visita_views.xml',

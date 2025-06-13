@@ -6,9 +6,7 @@ from base64 import b64encode
 class Checkpoint(models.Model):
     _name = 'checkpoint.seguridad'
     _description = 'Checkpoint de Seguridad'
-    _sql_constraints = [
-        ('checkpoint_name_unique', 'unique(name)', 'El nombre del checkpoint debe ser único.'),
-    ]
+    
 
     name = fields.Char('Checkpoint', required=True)  # <--- elimina unique=True
     gps_latitude = fields.Float('Latitud GPS', digits=(10, 6))
@@ -31,7 +29,8 @@ class Checkpoint(models.Model):
                 rec.mapa_html = ''
 
     descripcion = fields.Text(string='Descripción')
-    ubicacion = fields.Char(string='Ubicación del Checkpoint')
+    #ubicacion = fields.Char(string='Ubicación del Checkpoint')
+    puesto_id = fields.Many2one('puesto.seguridad', string='Puesto de Seguridad')
     codigo_qr = fields.Char(
         string='Código QR',
         required=True,
