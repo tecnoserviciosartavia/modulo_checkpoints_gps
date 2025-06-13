@@ -50,8 +50,13 @@
         <field name="name">Checkpoints</field>
         <field name="res_model">checkpoint.seguridad</field>
         <field name="view_mode">tree,form</field>
+        <field name="groups_id" eval="[(4, ref('modulo_checkpoints_gps.grupo_administrador_seguridad'))]"/>
     </record>
 
-    <menuitem id="menu_checkpoint_root" name="Checkpoints"/>
-    <menuitem id="menu_checkpoint" name="Checkpoints de Seguridad" parent="menu_checkpoint_root" action="action_checkpoint" />
+    <menuitem id="menu_checkpoint_root" name="Checkpoints" groups="modulo_checkpoints_gps.grupo_administrador_seguridad"/>
+    <menuitem id="menu_checkpoint"
+              name="Checkpoints de Seguridad"
+              parent="menu_checkpoint_root"
+              action="action_checkpoint"
+              groups="modulo_checkpoints_gps.grupo_administrador_seguridad"/>
 </odoo>

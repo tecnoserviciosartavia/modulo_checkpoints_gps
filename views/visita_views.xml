@@ -36,7 +36,12 @@
         <field name="name">Visitas</field>
         <field name="res_model">visita.seguridad</field>
         <field name="view_mode">tree,form</field>
+        <field name="groups_id" eval="[(4, ref('modulo_checkpoints_gps.grupo_administrador_seguridad'))]"/>
     </record>
 
-    <menuitem id="menu_visita" name="Historial de Visitas" parent="menu_checkpoint_root" action="action_visita"/>
+    <menuitem id="menu_visita"
+              name="Historial de Visitas"
+              parent="menu_checkpoint_root"
+              action="action_visita"
+              groups="modulo_checkpoints_gps.grupo_administrador_seguridad"/>
 </odoo>
