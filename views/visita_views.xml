@@ -1,0 +1,42 @@
+<odoo>
+    <record id="view_visita_tree" model="ir.ui.view">
+        <field name="name">visita.tree</field>
+        <field name="model">visita.seguridad</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="checkpoint_id"/>
+                <field name="oficial_id"/>
+                <field name="fecha_visita"/>
+                <field name="mapa_html" widget="html"/>
+                <field name="observaciones"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_visita_form" model="ir.ui.view">
+        <field name="name">visita.form</field>
+        <field name="model">visita.seguridad</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false">
+                <sheet>
+                    <group>
+                        <field name="checkpoint_id"/>
+                        <field name="oficial_id"/>
+                        <field name="fecha_visita"/>
+                        <field name="ubicacion_gps"/>
+                        <field name="observaciones"/>
+                        <field name="mapa_html" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_visita" model="ir.actions.act_window">
+        <field name="name">Visitas</field>
+        <field name="res_model">visita.seguridad</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_visita" name="Historial de Visitas" parent="menu_checkpoint_root" action="action_visita"/>
+</odoo>

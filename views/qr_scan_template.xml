@@ -1,0 +1,59 @@
+<odoo>
+    <template id="qr_scan_template" name="Escanear QR">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <h2>Escanear QR</h2>
+                <div id="qr-reader" style="width:300px"></div>
+                <div class="mt-3">
+                    <label for="observaciones">Observaciones:</label>
+                    <textarea id="observaciones" class="form-control" rows="2" placeholder="Ingrese observaciones importantes..."></textarea>
+                </div>
+                <div id="qr-result" class="alert alert-info mt-3" style="display:none;"></div>
+            </div>
+            <script src="https://unpkg.com/html5-qrcode"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const qrResult = document.getElementById('qr-result');
+                    const qrReader = new Html5Qrcode("qr-reader");
+                    const observacionesInput = document.getElementById('observaciones');
+
+                    function registrarVisita(qr, lat, lng, observaciones) {
+                        // Redirige al endpoint con los parámetros QR, ubicación y observaciones
+                        const params = new URLSearchParams({
+                            ubicacion_gps: lat + ',' + lng,
+                            observaciones: observaciones
+                        });
+                        window.location.href = `/registrar_visita/${qr}?${params.toString()}`;
+                    }
+
+                    function onScanSuccess(decodedText) {
+                        qrReader.stop();
+                        qrResult.style.display = 'block';
+                        qrResult.textContent = "Procesando...";
+                        // Obtener ubicación GPS
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function(position) {
+                                registrarVisita(
+                                    decodedText,
+                                    position.coords.latitude,
+                                    position.coords.longitude,
+                                    observacionesInput.value
+                                );
+                            }, function(error) {
+                                qrResult.textContent = "No se pudo obtener la ubicación GPS.";
+                            });
+                        } else {
+                            qrResult.textContent = "El navegador no soporta GPS.";
+                        }
+                    }
+
+                    qrReader.start(
+                        { facingMode: "environment" },
+                        { fps: 10, qrbox: 250 },
+                        onScanSuccess
+                    );
+                });
+            </script>
+        </t>
+    </template>
+</odoo>

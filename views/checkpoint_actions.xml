@@ -1,0 +1,9 @@
+<odoo>
+  <record id="action_generar_qr_wizard" model="ir.actions.act_window">
+    <field name="name">Generar QR para Checkpoint</field>
+    <field name="res_model">generar.qr.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="context">{'default_checkpoint_id': active_id}</field>
+  </record>
+</odoo>

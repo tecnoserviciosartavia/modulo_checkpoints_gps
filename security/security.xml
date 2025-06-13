@@ -1,0 +1,11 @@
+<odoo>
+    <record id="grupo_oficial_seguridad" model="res.groups">
+        <field name="name">Oficial de Seguridad</field>
+        <field name="category_id" ref="base.module_category_tools"/>
+    </record>
+
+    <record id="grupo_administrador_seguridad" model="res.groups">
+        <field name="name">Administrador de Seguridad</field>
+        <field name="category_id" ref="base.module_category_tools"/>
+    </record>
+</odoo>

@@ -1,0 +1,57 @@
+<odoo>
+    <record id="view_checkpoint_form" model="ir.ui.view">
+        <field name="name">checkpoint.form</field>
+        <field name="model">checkpoint.seguridad</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="ubicacion"/>
+                        <field name="descripcion"/>
+                        <field name="codigo_qr" readonly="1"/>
+                        <field name="gps_latitude" placeholder="Latitud"/>
+                        <field name="gps_longitude" placeholder="Longitud"/>
+                    </group>
+                    <group>
+                        <field name="imagen_qr" widget="image" class="oe_avatar"/>
+                    </group>
+                    <notebook>
+                        <page string="Visitas">
+                            <field name="visita_ids">
+                                <tree>
+                                    <field name="oficial_id"/>
+                                    <field name="fecha_visita"/>
+                                    <field name="observaciones"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_checkpoint_tree" model="ir.ui.view">
+        <field name="name">checkpoint.tree</field>
+        <field name="model">checkpoint.seguridad</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="ubicacion"/>
+                <field name="codigo_qr"/>
+                <field name="gps_latitude"/>
+                <field name="gps_longitude"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_checkpoint" model="ir.actions.act_window">
+        <field name="name">Checkpoints</field>
+        <field name="res_model">checkpoint.seguridad</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_checkpoint_root" name="Checkpoints"/>
+    <menuitem id="menu_checkpoint" name="Checkpoints de Seguridad" parent="menu_checkpoint_root" action="action_checkpoint" />
+</odoo>
